@@ -1082,7 +1082,7 @@ func (cn *conn) setupSSLClientCertificates(tlsConf *tls.Config, o values) {
 	// which behaviour we want.  Note that we don't do any more extensive
 	// checks than this (such as checking that the paths aren't directories);
 	// LoadX509KeyPair() will take care of the rest.
-	keyfinfo, err := os.Stat(sslkey)
+	_, err := os.Stat(sslkey)
 	if err != nil && missingOk {
 		return
 	} else if err != nil {
