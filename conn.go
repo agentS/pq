@@ -1095,12 +1095,6 @@ func (cn *conn) setupSSLClientCertificates(tlsConf *tls.Config, o values) {
 		panic(err)
 	}
 
-	// If we got this far, the key file must also have the correct permissions
-	kmode := keyfinfo.Mode()
-	if kmode != kmode&0600 {
-		panic(ErrSSLKeyHasWorldPermissions)
-	}
-
 	cert, err := tls.LoadX509KeyPair(sslcert, sslkey)
 	if err != nil {
 		panic(err)
